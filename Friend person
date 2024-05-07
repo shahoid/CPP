@@ -1,0 +1,23 @@
+#include <iostream>
+#include <string>
+
+class Person {
+private:
+    std::string name;
+    int age;
+
+public:
+    Person(std::string n, int a) : name(n), age(a) {}
+
+    friend void displayAge(Person p);
+};
+
+void displayAge(Person p) {
+    std::cout << p.name << "'s age is: " << p.age << std::endl;
+}
+
+int main() {
+    Person person("Alice", 30);
+    displayAge(person);
+    return 0;
+}
