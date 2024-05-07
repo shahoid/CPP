@@ -1,0 +1,22 @@
+#include <iostream>
+
+class MyClass {
+private:
+    int data;
+
+public:
+    MyClass(int d) : data(d) {}
+
+    friend void friendFunction(MyClass obj);
+};
+
+// Definition of friend function
+void friendFunction(MyClass obj) {
+    std::cout << "The value of data in MyClass is: " << obj.data << std::endl;
+}
+
+int main() {
+    MyClass obj(42);
+    friendFunction(obj); 
+    return 0;
+}
