@@ -1,0 +1,44 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Base class
+class Mobile {
+protected:
+    string brand;
+    string model;
+    double price;
+
+public:
+    Mobile(string brand, string model, double price) : brand(brand), model(model), price(price) {}
+
+    void display() {
+        cout << "Brand: " << brand << endl;
+        cout << "Model: " << model << endl;
+        cout << "Price: $" << price << endl;
+    }
+};
+
+// Derived class
+class Smartphone : public Mobile {
+private:
+    string os;
+
+public:
+    Smartphone(string brand, string model, double price, string os) : Mobile(brand, model, price), os(os) {}
+
+    void display() {
+        Mobile::display();
+        cout << "Operating System: " << os << endl;
+    }
+};
+
+int main() {
+    Smartphone iphone("Apple", "iPhone 12", 999.99, "iOS");
+
+    cout << "Smartphone Details:" << endl;
+    iphone.display();
+
+    return 0;
+}
