@@ -1,0 +1,40 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Bike {
+private:
+    string brand;
+    int year;
+
+public:
+    Bike(const string& b, int y) : brand(b), year(y) {}
+
+    // Overloading the << operator to output Bike objects
+    friend ostream& operator<<(ostream& out, const Bike& b) {
+        out << "Brand: " << b.brand << ", Year: " << b.year;
+        return out;
+    }
+
+    // Overloading the == operator to check if two bikes are equal
+    bool operator==(const Bike& other) const {
+        return (brand == other.brand && year == other.year);
+    }
+};
+
+int main() {
+    Bike bike1("Trek", 2020);
+    Bike bike2("Giant", 2019);
+    Bike bike3("Trek", 2020);
+
+    cout << "Bike 1: " << bike1 << endl;
+    cout << "Bike 2: " << bike2 << endl;
+
+    if (bike1 == bike3) {
+        cout << "Bike 1 and Bike 3 are the same." << endl;
+    } else {
+        cout << "Bike 1 and Bike 3 are different." << endl;
+    }
+
+    return 0;
+}
