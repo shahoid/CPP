@@ -1,0 +1,55 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+class Item {
+public:
+    int weight;
+    int value;
+
+    Item(int w, int v) : weight(w), value(v) {}
+};
+
+class Knapsack {
+private:
+    vector<Item> items;
+    int capacity;
+
+public:
+    Knapsack(int c) : capacity(c) {}
+
+    void addItem(int weight, int value) {
+        items.emplace_back(weight, value);
+    }
+
+    int solve() {
+        int n = items.size();
+        vector<vector<int>> dp(n + 1, vector<int>(capacity + 1, 0));
+
+        for (int i = 1; i <= n; ++i) {
+            for (int w = 1; w <= capacity; ++w) {
+                if (items[i - 1].weight <= w) {
+                    dp[i][w] = max(dp[i - 1][w], dp[i - 1][w - items[i - 1].weight] + items[i - 1].value);
+                } else {
+                    dp[i][w] = dp[i - 1][w];
+                }
+            }
+        }
+
+        return dp[n][capacity];
+    }
+};
+
+int main() {
+    Knapsack knapsack(10); // Capacity of the knapsack
+    knapsack.addItem(5, 10); // Item 1: weight 5, value 10
+    knapsack.addItem(4, 40); // Item 2: weight 4, value 40
+    knapsack.addItem(6, 30); // Item 3: weight 6, value 30
+    knapsack.addItem(3, 50); // Item 4: weight 3, value 50
+
+    cout << "Maximum value that can be put into the knapsack: " << knapsack.solve() << endl;
+
+    return 0;
+}
