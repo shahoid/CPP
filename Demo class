@@ -1,0 +1,37 @@
+#include <iostream>
+
+using namespace std;
+
+class Demo {
+private:
+    int value;
+
+public:
+    Demo(int v) : value(v) {}
+
+    Demo operator+(const Demo& other) const {
+        return Demo(value + other.value);
+    }
+
+    int getValue() const {
+        return value;
+    }
+};
+
+int main() {
+    int value1, value2;
+
+    cout << "Enter value for value1: ";
+    cin >> value1;
+    cout << "Enter value for value2: ";
+    cin >> value2;
+    
+    Demo demo1(value1);
+    Demo demo2(value2);
+
+    Demo sum = demo1 + demo2;
+
+    cout << "The sum of demo1 and demo2 is: " << sum.getValue() << endl;
+
+    return 0;
+}
