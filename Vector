@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class Person {
+public:
+    string name;
+    int age;
+
+    Person(string n, int a) : name(n), age(a) {}
+};
+
+int main() {
+    
+    vector<Person> people;
+
+    people.push_back(Person("om", 20));
+    people.push_back(Person("vinod", 20));
+    people.push_back(Person("juber", 20));
+
+  
+    cout << "People:\n";
+    for (const auto& person : people) {
+        cout << "Name: " << person.name << ", Age: " << person.age << endl;
+    }
+
+    return 0;
+}
