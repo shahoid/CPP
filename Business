@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+// Base class
+class Business {
+protected:
+    string companyName;
+    string location;
+
+public:
+    Business(string name, string loc) : companyName(name), location(loc) {}
+
+    void displayInfo() {
+        cout << "Company Name: " << companyName << endl;
+        cout << "Location: " << location << endl;
+    }
+};
+
+// Derived class
+class Restaurant : public Business {
+private:
+    string cuisineType;
+
+public:
+    Restaurant(string name, string loc, string cuisine) : Business(name, loc), cuisineType(cuisine) {}
+
+    void displayInfo() {
+        Business::displayInfo(); // Call base class function
+        cout << "Cuisine Type: " << cuisineType << endl;
+    }
+};
+
+int main() {
+    Restaurant myRestaurant("Tasty Bites", "123 Main St", "indian");
+
+    myRestaurant.displayInfo();
+
+    return 0;
+}
