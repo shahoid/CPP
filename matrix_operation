@@ -1,0 +1,121 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class Matrix {
+private:
+    vector<vector<int>> data;
+    int rows;
+    int cols;
+
+public:
+    // Constructor
+    Matrix(int numRows, int numCols) : rows(numRows), cols(numCols) {
+        data.resize(rows, vector<int>(cols, 0));
+    }
+
+    // Function to set value at a particular position
+    void setValue(int row, int col, int value) {
+        data[row][col] = value;
+    }
+
+    // Function to get value at a particular position
+    int getValue(int row, int col) const {
+        return data[row][col];
+    }
+
+    // Function to add another matrix
+    Matrix add(const Matrix& other) const {
+        Matrix result(rows, cols);
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                result.data[i][j] = data[i][j] + other.data[i][j];
+            }
+        }
+        return result;
+    }
+
+    // Function to subtract another matrix
+    Matrix subtract(const Matrix& other) const {
+        Matrix result(rows, cols);
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                result.data[i][j] = data[i][j] - other.data[i][j];
+            }
+        }
+        return result;
+    }
+
+    // Function to multiply with another matrix
+    Matrix multiply(const Matrix& other) const {
+        Matrix result(rows, other.cols);
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < other.cols; j++) {
+                for (int k = 0; k < cols; k++) {
+                    result.data[i][j] += data[i][k] * other.data[k][j];
+                }
+            }
+        }
+        return result;
+    }
+
+    // Function to display the matrix
+    void display() const {
+        for (const auto& row : data) {
+            for (int val : row) {
+                cout << val << " ";
+            }
+            cout << endl;
+        }
+    }
+};
+
+int main() {
+    Matrix A(3, 3);
+    A.setValue(0, 0, 1);
+    A.setValue(0, 1, 2);
+    A.setValue(0, 2, 3);
+    A.setValue(1, 0, 4);
+    A.setValue(1, 1, 5);
+    A.setValue(1, 2, 6);
+    A.setValue(2, 0, 7);
+    A.setValue(2, 1, 8);
+    A.setValue(2, 2, 9);
+
+    Matrix B(3, 3);
+    B.setValue(0, 0, 9);
+    B.setValue(0, 1, 8);
+    B.setValue(0, 2, 7);
+    B.setValue(1, 0, 6);
+    B.setValue(1, 1, 5);
+    B.setValue(1, 2, 4);
+    B.setValue(2, 0, 3);
+    B.setValue(2, 1, 2);
+    B.setValue(2, 2, 1);
+
+    cout << "Matrix A:" << endl;
+    A.display();
+    cout << endl;
+
+    cout << "Matrix B:" << endl;
+    B.display();
+    cout << endl;
+
+    cout << "Matrix Addition:" << endl;
+    Matrix sum = A.add(B);
+    sum.display();
+    cout << endl;
+
+    cout << "Matrix Subtraction:" << endl;
+    Matrix diff = A.subtract(B);
+    diff.display();
+    cout << endl;
+
+    cout << "Matrix Multiplication:" << endl;
+    Matrix product = A.multiply(B);
+    product.display();
+    cout << endl;
+
+    return 0;
+}
