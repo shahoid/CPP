@@ -1,0 +1,27 @@
+#include <iostream>
+
+using namespace std;
+
+class Subtractor {
+public:
+    // Function to perform subtraction
+    int subtract(int a, int b) {
+        return a - b;
+    }
+};
+
+int main() {
+    Subtractor subtractor;
+    int num1, num2;
+
+    cout << "Enter first number: ";
+    cin >> num1;
+
+    cout << "Enter second number: ";
+    cin >> num2;
+
+    int result = subtractor.subtract(num1, num2);
+    cout << "Result of subtraction: " << result << endl;
+
+    return 0;
+}
