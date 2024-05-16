@@ -1,0 +1,32 @@
+#include <iostream>
+
+using namespace std;
+
+class Divider {
+public:
+    // Function to perform division
+    float divide(float dividend, float divisor) {
+        if (divisor == 0) {
+            cout << "Error: Division by zero!" << endl;
+            return 0; // Returning 0 in case of division by zero
+        } else {
+            return dividend / divisor;
+        }
+    }
+};
+
+int main() {
+    Divider divider;
+    float dividend, divisor;
+
+    cout << "Enter dividend: ";
+    cin >> dividend;
+
+    cout << "Enter divisor: ";
+    cin >> divisor;
+
+    float result = divider.divide(dividend, divisor);
+    cout << "Result: " << result << endl;
+
+    return 0;
+}
